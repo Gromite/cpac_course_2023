@@ -12,7 +12,9 @@ void draw() {
   background(255);
 
   PVector wind = new PVector(0.9,0.3);
-  PVector gravity = new PVector(0,0.9);
+  PVector gravity = new PVector(0,0.01);
+  
+
   m.applyForce(wind);
   m.applyForce(gravity);
   
