@@ -2,7 +2,7 @@
 Vehicle v;
 
 void setup() {
-  size(800, 200);
+  size(800, 800);
   v = new Vehicle(width/2, height/2);
   smooth();
 }
