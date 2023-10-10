@@ -11,6 +11,9 @@ class Gingerbread(Composition):
         self.min=-3
         self.max=8
         self.range=self.max-self.min 
+        
+        self.x = -0.1
+        self.y = 0.1
         # your code here
         
     def map(self, value_in, min_out, max_out):
@@ -20,6 +23,14 @@ class Gingerbread(Composition):
 
     def next(self):
         # your code here
+        self.x_old = self.x
+        self.x = 1 - self.y + abs(self.x)
+        self.y = self.x_old
+        self.amp = float(np.random.choice([0.8,1,0.7]))
+        self.dur = self.map(self.x, 0.1 , 0.5) 
+        self.midinote = int(self.map(self.y, 50 , 60) + np.random.choice([0,2,4])) 
+
+        print(self.x, self.y)
         pass
     
 if __name__=="__main__":
