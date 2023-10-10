@@ -15,7 +15,7 @@ class Gingerbread(Composition):
         self.x = -0.1
         self.y = 0.1
         # your code here
-        
+
     def map(self, value_in, min_out, max_out):
         value_out = (value_in-self.min)/(self.range)
         value_out = min_out+ value_out * (max_out-min_out)
