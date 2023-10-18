@@ -18,6 +18,8 @@ class ParticleSystem{
     for(int i=this.particles.size()-1; i>=0; i--){
       p=this.particles.get(i);
       /* your code here*/
+      p.applyForce(new PVector(random(-small_force*2, small_force*2),random(-small_force*2, small_force*2)));
+      p.update();
       p.draw();
       p.lifespan-=0.5;
       if(p.isDead()){

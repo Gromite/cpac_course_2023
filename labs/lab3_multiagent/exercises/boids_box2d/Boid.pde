@@ -89,7 +89,7 @@ class Boid{
       
       // this vector will store the direction to other boid
       Vec2 direction;
-      
+      Vec2 opp_dir;
       // where to store align and avoid force
       Vec2 align_force = new Vec2(0,0);
       Vec2 avoid_force = new Vec2(0,0);
@@ -101,10 +101,16 @@ class Boid{
         direction=otherPosW.sub(myPosW);
         
         if(direction.length()<AVOID_DIST){
-           /*YOUR CODE HERE: compute contribution to avoid force */           
+           /*YOUR CODE HERE: compute contribution to avoid force */     
+           //print(direction);
+           avoid_force.addLocal(direction.mul(-5));
         }
         else if(direction.length()<ALIGN_DIST){
-           /*YOUR CODE HERE: compute contribution to align force */                     
+           /*YOUR CODE HERE: compute contribution to align force */  
+           otherVel = other.body.getLinearVelocity();
+           align_force.addLocal(otherVel.sub(myVel));
+           
+           
         }
       } // end of the loop
       if(DRAW_DEBUG){ 

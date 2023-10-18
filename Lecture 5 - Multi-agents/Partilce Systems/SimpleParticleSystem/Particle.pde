@@ -25,6 +25,7 @@ class Particle{
   }
   
   void run(){
+    colorMode(HSB, 255);
     this.update();    
     fill(200, this.lifespan);
     noStroke();

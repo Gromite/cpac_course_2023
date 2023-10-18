@@ -23,7 +23,7 @@ class ParticleSystem{
       //p.applyForce(new PVector(random(-0.1, 0.1), random(-0.1,0.1)));
       p.applyForce(new PVector(random(-0.1, 0.1), random(-0.1,-0.3)));
       p.run();
-      p.lifespan-=1;
+      p.lifespan-=0.3;
       if(p.isDead()){
          particles.remove(i);
          this.addParticle();

@@ -5,7 +5,7 @@ class CA {
   int[] cells;     // An array of 0s and 1s 
   int generation;  // How many generations?
 
-  int[] ruleset = {0,1,1,0,1,1,0,1};     // An array to store the ruleset, for example {0,1,1,0,1,1,0,1}
+  int[] ruleset = {0,1,0,1,0,1,1,1,1,0};     // An array to store the ruleset, for example {0,1,1,0,1,1,0,1}
   int w = 10;  // Dimensions of a cell
 
   CA() {
@@ -37,9 +37,13 @@ class CA {
   // This is the easy part, just draw the cells, fill 255 for '1', fill 0 for '0'
   void display() {
     for (int i = 0; i < cells.length; i++) {
-      if (cells[i] == 1) fill(0);
-      else               fill(255);
+      int c = color(random(0,255), random(0,255), random(0,255));
+      
+      if (cells[i] == 1) fill(c );
+      else               fill(0);
       noStroke();
+      //int c = color(255, 204, 0);
+      //fill(c);
       rect(i*w, generation*w, w, w);
     }
   }

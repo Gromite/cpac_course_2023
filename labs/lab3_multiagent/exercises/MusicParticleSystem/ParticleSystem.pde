@@ -1,7 +1,8 @@
 class ParticleSystem{
   ArrayList<Particle> particles;
   PVector origin;
-  
+  float small_force;
+  float hue;
   ParticleSystem(){
     this.particles = new ArrayList<Particle>();
     this.origin=new PVector(width/2, height/2);
@@ -14,13 +15,14 @@ class ParticleSystem{
     this.particles.add(new Particle(this.origin, 10, random(0,255)));   
   }
   void followMusic(AgentFeature features){
-    ;
+    small_force = features.energy/200;
+    hue = features.energy/200;
     // your code here: make the particle movement, or color, or size, follow music's features
     // hint: start mapping  features.energy/1000  on small_force
   }
   void draw(){
     Particle p;
-    float small_force=0.05;
+    
     PVector random_force=new PVector(0,0);
     for(int i=this.particles.size()-1; i>=0; i--){
       p=this.particles.get(i);

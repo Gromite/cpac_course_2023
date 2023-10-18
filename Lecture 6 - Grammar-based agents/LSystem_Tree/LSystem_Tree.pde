@@ -1,3 +1,4 @@
+
 float theta;   
 
 void setup() {
@@ -39,11 +40,11 @@ void branch(float h) {
     popMatrix();     // Whenever we get back here, we "pop" in order to restore the previous matrix state
     
     // Repeat the same thing, only branch off to the "left" this time!
-    pushMatrix();
+    //pushMatrix();
     rotate(-theta);
     line(0, 0, 0, -h);
     translate(0, -h);
     branch(h);
-    popMatrix();
+    //popMatrix();
   }
 }

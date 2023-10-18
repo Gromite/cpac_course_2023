@@ -8,6 +8,8 @@ import numpy as np
 
 default_word_dur={"h":0.5, # half-measure
           "q":0.25, # quarter-measure
+          "o":0.125,
+          "0": 0.0675
 }
 metronome_grammar={
     "M":["q","q","q","q"]

@@ -46,21 +46,17 @@ public void setup(){
 
 public PVector computeGravityForce(AgentMover mover){
   PVector attr_force = mover.position.copy();
-  attr_force.sub(mover.position);
-  dist = attr_force.mag();
-  dist = constrain(dist, dist_min, dist_max);
+
+  attr_force.sub(pos_attractor);
+  dist= attr_force.mag();
+  dist=constrain(dist, dist_min,dist_max);
   attr_force.normalize();
-  attr_force.mult(mass_attractor*mover.mass/(dist*dist));
-return attr_force;
-
-
+  attr_force.mult(-1*mass_attractor*mover.mass/(dist*dist));
+  return attr_force;
 }
-
-
-
 public void sendEffect(float cutoff, float vibrato){
     OscMessage effect = new OscMessage("/note_effect");    
-    effect.add("effect");       
+    effect.add("effect");      
     effect.add(cutoff);
     effect.add(vibrato);
     
@@ -105,9 +101,11 @@ class AgentMover{
     this.acceleration.mult(0);
   }
   public void computeEffect(float dist){
-    this.cutoff=map(dist,dist_min,dist_max,0,1);
+    this.cutoff=map(dist, dist_min, dist_max, 0, 1);
+    
   }
   public void applyForce(PVector force){    
+    
     PVector f = force.copy();
     f.div(this.mass);
     this.acceleration.add(f);
