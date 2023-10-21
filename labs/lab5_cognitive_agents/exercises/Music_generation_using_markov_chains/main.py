@@ -6,6 +6,7 @@ import time
 import argparse
 from pythonosc import udp_client
 import os
+import random
 
 dirname = os.path.dirname(__file__)
 #np.random.seed(42)
@@ -41,19 +42,27 @@ bigrams[:5]
 def predict_next_state(chord:str, data:list=bigrams):
     """Predict next chord based on current state."""
     # create list of bigrams which starts with current chord
-    #bigrams_with_current_chord = # FILL CODE
+    bigrams_with_current_chord = [bigram for bigram in bigrams if chord == bigram.split()[0]]# FILL CODE
     # count appearance of each bigram
-    #count_appearance = # FILL CODE
+    # print(bigrams_with_current_chord)
+    bigram_cc_set = set(bigrams_with_current_chord)
+    count_appearance = dict(zip(bigram_cc_set, [bigrams_with_current_chord.count(bigram) for bigram in bigram_cc_set]))
+    # print(count_appearance)
+    # # FILL CODE
+    # print(data)
 
     # convert appearance into probabilities
-    #for ngram in count_appearance.keys(): # FILL CODE
-        #count_appearance[ngram] = # FILL CODE
+    all_counts = sum(count_appearance.values())
+    for ngram in count_appearance.keys(): # FILL CODE
+        count_appearance[ngram] /= all_counts# FILL CODE
     # create list of possible options for the next chord
-    #options = # FILL CODE
+    options = [key.split()[1] for key in list(count_appearance.keys())] # FILL CODE
     # create  list of probability distribution
-    #probabilities = # FILL CODE
+    probabilities = list(count_appearance.values()) # FILL CODE
     # return random prediction
-    return # FILL CODE
+    
+    return  random.choices(options,probabilities)[0] # FILL CODE
+
 
 
 # %% Sequence generation function
@@ -64,15 +73,19 @@ def generate_sequence(chord:str=None, data:list=bigrams, length:int=30):
     for n in range(length):
         # append next chord for the list
         # FILL CODE
+        chords.append(chord)
         # use last chord in sequence to predict next chord
         # FILL CODE
-        pass #REMOVE THIS LINE
+        print(chords)
+
+        chord = predict_next_state(chord)
+        # pass #REMOVE THIS LINE
     return chords  
 
 # %% Generate the sequence and send OSC message
 chords = generate_sequence('C')
 
-
+#%%
 print('')
 print('')
 print('Generated Chords Sequence:')
@@ -112,3 +125,4 @@ for c in chords:
         client.send_message("/synth_control",['chord4',chords_midi_dict[c][0],chords_midi_dict[c][1],chords_midi_dict[c][2],chords_midi_dict[c][3]])
         time.sleep(1)
     
+# %%

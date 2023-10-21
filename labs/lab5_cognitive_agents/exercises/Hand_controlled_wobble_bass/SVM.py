@@ -1,4 +1,4 @@
-
+#%%
 import cv2
 import os
 import numpy as np
@@ -57,19 +57,20 @@ def train_svm():
 
 	pca = PCA(n_components=150, svd_solver='randomized', whiten=True, random_state=42)
 	svc = SVC(kernel='rbf', class_weight='balanced')
-	#model = # FILL THE CODE
+	model = make_pipeline()# FILL THE CODE
 
 	with warnings.catch_warnings():
 		# ignore all caught warnings
 		warnings.filterwarnings("ignore")
 		# execute code that will generate warnings
-		#xtrain, xtest, ytrain, ytest = # FILL THE CODE
+		xtrain, xtest, ytrain, ytest = train_test_split(images_vector, labels)# FILL THE CODE
 
 	param_grid = {'svc__C': [1, 5, 10, 50], 'svc__gamma': [0.0001, 0.0005, 0.001, 0.005]}
 	grid = GridSearchCV(model, param_grid)
 
 	print('Fit the SVM model')
 	# FILL THE CODE
+	model.fit()
 
 	print(grid.best_params_)
 
@@ -81,3 +82,5 @@ def train_svm():
 	return model
 
 
+
+# %%

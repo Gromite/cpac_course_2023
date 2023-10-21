@@ -23,7 +23,7 @@ def segment(image, threshold=25):
 
     # Find the absolute difference between background and current image
     # FILL THE CODE
-    # diff = cv2.absdiff(bg.astype("uint8"), # ....? )
+    diff = cv2.absdiff(bg.astype("uint8"), image)
     
     # Threshold the diff image so that we get the foreground
     # FILL THE CODE
