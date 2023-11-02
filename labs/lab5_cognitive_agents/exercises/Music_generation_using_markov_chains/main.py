@@ -32,7 +32,7 @@ data = pd.read_csv(dirname+'/data/Beatles_chord_sequence.csv')
 data
 
 # %% Generate Bigrams
-n = 2
+n = 3
 chords = data['chords'].values
 ngrams = zip(*[chords[i:] for i in range(n)])
 bigrams = [" ".join(ngram) for ngram in ngrams]
@@ -103,7 +103,7 @@ def start_osc_communication():
     # OSC server ip
     parser.add_argument("--ip", default='127.0.0.1', help="The ip of the OSC server")
     # OSC server port (check on SuperCollider)
-    parser.add_argument("--port", type=int, default=57121, help="The port the OSC server is listening on")
+    parser.add_argument("--port", type=int, default=57120, help="The port the OSC server is listening on")
 
     # Parse the arguments
     args = parser.parse_args()
